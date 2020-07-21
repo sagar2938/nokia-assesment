@@ -1,0 +1,17 @@
+version: '3'
+services:
+  discovery:
+    image: nokia.assesment.com/discovery:0.0.1-SNAPSHOT
+    ports:
+      - 8761:8761
+  school-service:
+    image: nokia.assesment.com/filestore-service:0.0.1-SNAPSHOT
+    environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery:8761/eureka
+    depends_on:
+      - discovery
+    ports:
+      - 8081:8081
+
+
